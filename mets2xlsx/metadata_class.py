@@ -1,5 +1,5 @@
 class Periodical:
-
+	'''V tomto souboru je možné nadefinovat mapování hodnot. "name" je použito v záhlaví tabulky, "xpath" definuje cestu k elementu. Klíč (např. "title" nebo "title_base") se automaticky zobrazí ve výběru getopt. Proměnná "base_lvl" určuje základní úroveň dokumentu - může se jednat o MODS_ISSUE a MODS_SUPPL v případě periodika, nebo o MODS_VOLUME v případě monografie.'''
     def __init__(self, suppl=False):
         self.suppl = suppl
         self.base_lvl = self.set_suppl()
@@ -9,6 +9,26 @@ class Periodical:
             'title': {
                 'name': "Titul (TITLE)",
                 'xpath': "//mods:mods[starts-with(@ID, 'MODS_TITLE')]/mods:titleInfo/mods:title/text()"
+                },
+            'title_base': {
+                'name': "Titul (zákl.)",
+                'xpath': "//mods:mods[starts-with(@ID, '"+ self.base_lvl +"')]/mods:titleInfo/mods:title/text()"
+                },
+            'title_physicalLocation': {
+                'name': "Physical location (TITLE)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_TITLE')]/mods:location/mods:physicalLocation/text()"
+                },
+            'title_shelfLocator': {
+                'name': "Shelf Locator (TITLE)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_TITLE')]/mods:location/mods:shelfLocator/text()"
+                },
+            'issue_physicalLocation': {
+                'name': "Physical location (ISSUE)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_ISSUE')]/mods:location/mods:physicalLocation/text()"
+                },
+            'issue_shelfLocator': {
+                'name': "Shelf Locator (ISSUE)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_ISSUE')]/mods:location/mods:shelfLocator/text()"
                 },
             'title_uuid': {
                 'name': "UUID (TITLE)",
@@ -95,6 +115,14 @@ class Monograph:
             'volume_uuid': {
                 'name': "UUID svazku",
                 'xpath': "//mods:mods[starts-with(@ID, '"+ self.base_lvl +"')]/mods:identifier[@type='uuid']/text()"
+                },
+            'volume_physicalLocation': {
+                'name': "Physical location (SVAZEK)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_VOLUME')]/mods:location/mods:physicalLocation/text()"
+                },
+            'volume_shelfLocator': {
+                'name': "Shelf Locator (SVAZEK)",
+                'xpath': "//mods:mods[starts-with(@ID, 'MODS_VOLUME')]/mods:location/mods:shelfLocator/text()"
                 },
             'volume_no': {
                 'name': "Číslo svazku",

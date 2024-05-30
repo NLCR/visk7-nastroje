@@ -7,7 +7,7 @@ from lxml import etree
 from metadata_class import Periodical, Monograph
 import dateparse
 
-version='0.1'
+version='0.2'
 
 mets_ns = { 'mets': 'http://www.loc.gov/METS/',
             'dc': 'http://purl.org/dc/elements/1.1/',
